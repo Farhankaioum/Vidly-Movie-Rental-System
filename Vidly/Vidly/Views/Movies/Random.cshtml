@@ -1,7 +1,21 @@
-﻿@model Movie
+﻿@model RandomMovieViewModel
 @{
     ViewData["Title"] = "Random Movie Page";
+    var special = Model.Customers.Count > 0 ? "popular" : null;
 }
 
-<h2>@Model.Name</h2>
+<h2 class="@special">@Model.Movie.Name</h2>
+<ul>
+    @if (Model.Customers.Count >= 5)
+    {
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    }
+    else
+    {
+        <li>No one render this movie</li>
+    }
+</ul>
 

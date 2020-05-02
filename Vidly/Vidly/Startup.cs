@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Vidly.Data;
 
 namespace Vidly
 {
@@ -24,6 +26,10 @@ namespace Vidly
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //add db connection string registration
+            services.AddDbContextPool<MovieRentDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("VidlyDBConnection")));
             
         }
 
