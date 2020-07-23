@@ -260,3 +260,5 @@ G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidl
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.csproj.CopyComplete
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.dll
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.pdb
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.csproj.CoreCompileInputs.cache
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.genruntimeconfig.cache
