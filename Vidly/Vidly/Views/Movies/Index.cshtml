@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>Movie</th>
+            <th>Genre</th>
         </tr>
     </thead>
     
@@ -23,7 +24,8 @@
             @foreach (var movie in Model)
             {
                 <tr>
-                    <td class="text-success">@movie.Name</td>
+                    <td class="text-success"><a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">@movie.Name</a></td>
+                    <td>@movie.Genre.Name</td>
                     
                 </tr>
             }

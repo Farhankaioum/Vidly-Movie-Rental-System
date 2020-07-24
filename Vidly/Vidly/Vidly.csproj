@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200724195052_NameColumnAddedInMembershipTypeTable.cs" />
     <Compile Remove="Migrations\20200724195052_NameColumnAddedInMembershipTypeTable.Designer.cs" />
+    <Compile Remove="Migrations\20200724201809_AddedGenreTable.cs" />
+    <Compile Remove="Migrations\20200724201809_AddedGenreTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
