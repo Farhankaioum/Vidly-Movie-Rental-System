@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +31,31 @@ namespace Vidly
             //add db connection string registration
             services.AddDbContextPool<MovieRentDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("VidlyDBConnection")));
-            
+
+            //for identity registration and override PasswordOptions class properties
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+
+                ////for account logout retry
+                //options.Lockout.MaxFailedAccessAttempts = 5;
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+
+                ////for email confirming ensuring registration
+                //options.SignIn.RequireConfirmedEmail = true;
+                ////for passwordOptions class prop
+                //options.Password.RequiredLength = 10;
+                //options.Password.RequiredUniqueChars = 3;
+                //options.Password.RequireNonAlphanumeric = false;
+                //options.Password.RequireUppercase = false;
+                //options.Password.RequireLowercase = false;
+                ////add token service
+                //options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
+
+
+            })
+                .AddEntityFrameworkStores<MovieRentDbContext>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +76,7 @@ namespace Vidly
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
