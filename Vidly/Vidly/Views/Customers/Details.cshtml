@@ -4,4 +4,13 @@
 }
 
 <h1>@Model.Name</h1>
+<ul>
+    <li>Membership Type:@Model.MembershipType.Name</li>
+    @if (Model.BirthDate != null)
+    {
+        var date = Convert.ToDateTime(@Model.BirthDate);
+        <li>Birthdate:@date.ToShortDateString()</li>
+    }
+
+</ul>
 
