@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModel;
 
@@ -10,18 +11,15 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        List<Customer> customers;
-        public CustomersController()
-        {
-            customers = new List<Customer> {
+        private readonly MovieRentDbContext _context;
 
-                new Customer{Id = 1, Name = "John Smith"},
-                new Customer{Id = 2, Name = "Marry Williams"}
-            };
+        public CustomersController(MovieRentDbContext context)
+        {
+            _context = context;
         }
         public IActionResult Index()
         {
-           
+            var customers = _context.Customers;
             return View(customers);
         }
         public IActionResult Details(int? id)
@@ -30,7 +28,9 @@ namespace Vidly.Controllers
             {
                 return NotFound();
             }
-            var customer = customers.Find(c => c.Id == id);
+
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
             if (customer == null)
             {
                 return NotFound();
