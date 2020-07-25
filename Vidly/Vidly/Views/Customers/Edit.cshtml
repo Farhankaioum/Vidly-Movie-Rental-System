@@ -4,8 +4,8 @@
 <h1> Edit Customer</h1>
 
 <form method="post" asp-action="Edit" asp-controller="Customers">
-    <input asp-for="@Model.Customer.Id" type="hidden"/>
-    
+    <input asp-for="@Model.Customer.Id" type="hidden" />
+
     <div class="form-group">
         <label asp-for="@Model.Customer.Name"></label>
         <input asp-for="@Model.Customer.Name" class="form-control" />
@@ -36,5 +36,8 @@
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
+    @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+    }
 
 </form>

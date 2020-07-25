@@ -80,7 +80,7 @@ namespace Vidly.Controllers
 
                     return RedirectToAction(nameof(Index));
                 }
-            
+            model.MembershipTypes = _context.MembershipTypes.ToList();
             return View(model);
         }
 
