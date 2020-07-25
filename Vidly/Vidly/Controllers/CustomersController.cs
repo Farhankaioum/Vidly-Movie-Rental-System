@@ -31,6 +31,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CreateCustomerViewModel model)
         {
             if (ModelState.IsValid)
@@ -40,6 +41,7 @@ namespace Vidly.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
+            model.MembershipTypes = _context.MembershipTypes.ToList();
             return View(model);
         }
 
@@ -61,6 +63,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(CreateCustomerViewModel model)
         {
             var customer = _context.Customers.FirstOrDefault(c => c.Id == model.Customer.Id);

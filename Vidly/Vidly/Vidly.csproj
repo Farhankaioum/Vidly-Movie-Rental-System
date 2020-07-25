@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200724195052_NameColumnAddedInMembershipTypeTable.Designer.cs" />
     <Compile Remove="Migrations\20200724201809_AddedGenreTable.cs" />
     <Compile Remove="Migrations\20200724201809_AddedGenreTable.Designer.cs" />
+    <Compile Remove="Migrations\20200725090837_RequiredAttributeAdded.cs" />
+    <Compile Remove="Migrations\20200725090837_RequiredAttributeAdded.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
