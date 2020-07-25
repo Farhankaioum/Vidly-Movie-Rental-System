@@ -1,7 +1,7 @@
 ﻿@model SaveMovieViewModel
 
 @{
-    var id = Model.Movie.Id;
+    var id = Model.Id;
     string pageTitle = "Edit Movie";
     if(id == 0)
     {
@@ -11,41 +11,38 @@
     <h3 class="mt-2 mb-2">@pageTitle</h3>
 
     <form method="post" asp-controller="Movies" asp-action="Save">
-        <input asp-for="@Model.Movie.Id" type="hidden" />
-        <div class="form-group row">
-            <label asp-for="@Model.Movie.Name" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="@Model.Movie.Name" class="form-control">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @Html.AntiForgeryToken()
+        <input asp-for="@Model.Id" type="hidden" />
+        <div class="form-group">
+            <label asp-for="@Model.Name" class="col-form-label"></label>
+            <div>
+                <input asp-for="@Model.Name" class="form-control">
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
             </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ReleaseDate)
+            @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ReleaseDate)
         </div>
 
-        <div class="form-group row">
-            <label asp-for="@Model.Movie.ReleaseDate" class="col-sm-2 col-form-label"></label>
+        <div class="form-group">
+            <label asp-for="@Model.GenreId" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <input asp-for="@Model.Movie.ReleaseDate" class="form-control">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label asp-for="@Model.Movie.GenreId" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <select class="form-control" asp-for="@Model.Movie.GenreId"
+                <select class="form-control" asp-for="@Model.GenreId"
                         asp-items="@(new SelectList(Model.Genres, "Id", "Name"))">
                     <option value="" selected>Please select</option>
                 </select>
+                <span asp-validation-for="@Model.GenreId]" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="form-group row">
-            <label asp-for="@Model.Movie.DateAdded" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="@Model.Movie.DateAdded" class="form-control">
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="@Model.Movie.Stock" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="@Model.Movie.Stock" class="form-control">
+        <div class="form-group">
+            <label asp-for="@Model.Stock" class="col-form-label"></label>
+            <div>
+                <input asp-for="@Model.Stock" class="form-control">
+                <span asp-validation-for="@Model.Stock" class="text-danger"></span>
             </div>
         </div>
 
@@ -54,3 +51,7 @@
         </div>
 
     </form>
+
+@section Scripts{ 
+    <partial name="_ValidationScriptsPartial"/>
+}
