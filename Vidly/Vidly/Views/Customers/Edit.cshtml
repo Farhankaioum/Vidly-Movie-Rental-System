@@ -1,0 +1,36 @@
+﻿@model CreateCustomerViewModel
+
+
+<h1> New Customer</h1>
+
+<form method="post" asp-action="Edit" asp-controller="Customers">
+    <input asp-for="@Model.Customer.Id" type="hidden"/>
+    <div class="form-group">
+        <label asp-for="@Model.Customer.Name"></label>
+        <input asp-for="@Model.Customer.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Customer.BirthDate"></label>
+        <input asp-for="@Model.Customer.BirthDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Customer.MembershipTypeId"></label>
+        <select class="form-control" asp-for="@Model.Customer.MembershipTypeId"
+                asp-items="@(new SelectList(Model.MembershipTypes, "Id", "Name"))">
+            <option value="" selected>Please select</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input asp-for="@Model.Customer.IsSubscribedToNewsLetter" class="form-check-input">
+            <label class="form-check-label" asp-for="@Model.Customer.IsSubscribedToNewsLetter">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+
+</form>

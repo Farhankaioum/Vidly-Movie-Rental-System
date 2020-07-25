@@ -18,11 +18,79 @@ namespace Vidly.Controllers
         {
             _context = context;
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var model = new CreateCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateCustomerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Customers.Add(model.Customer);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return NotFound();
+
+            var viewModel = new CreateCustomerViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CreateCustomerViewModel model)
+        {
+            var customer = _context.Customers.FirstOrDefault(c => c.Id == model.Customer.Id);
+            
+            if (customer != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    customer.Name = model.Customer.Name;
+                    customer.BirthDate = model.Customer.BirthDate;
+                    customer.IsSubscribedToNewsLetter = model.Customer.IsSubscribedToNewsLetter;
+                    customer.MembershipTypeId = model.Customer.MembershipTypeId;
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction(nameof(Index));
+                }
+               
+                return View(model);
+            }
+
+            return View();
+        }
+
         public IActionResult Index()
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
             return View(customers);
         }
+
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +107,11 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
     }
 }

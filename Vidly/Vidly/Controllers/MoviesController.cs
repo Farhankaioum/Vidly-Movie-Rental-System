@@ -57,5 +57,10 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
     }
 }
