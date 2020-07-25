@@ -1,0 +1,56 @@
+﻿@model SaveMovieViewModel
+
+@{
+    var id = Model.Movie.Id;
+    string pageTitle = "Edit Movie";
+    if(id == 0)
+    {
+        pageTitle = "Movie";
+    }
+}
+    <h3 class="mt-2 mb-2">@pageTitle</h3>
+
+    <form method="post" asp-controller="Movies" asp-action="Save">
+        <input asp-for="@Model.Movie.Id" type="hidden" />
+        <div class="form-group row">
+            <label asp-for="@Model.Movie.Name" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Movie.Name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="@Model.Movie.ReleaseDate" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Movie.ReleaseDate" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Movie.GenreId" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select class="form-control" asp-for="@Model.Movie.GenreId"
+                        asp-items="@(new SelectList(Model.Genres, "Id", "Name"))">
+                    <option value="" selected>Please select</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="@Model.Movie.DateAdded" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Movie.DateAdded" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="@Model.Movie.Stock" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Movie.Stock" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Save" />
+        </div>
+
+    </form>

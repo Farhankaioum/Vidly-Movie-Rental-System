@@ -283,3 +283,4 @@ G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidl
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Movies\Details.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Create.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Edit.cshtml.g.cs
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Movies\Save.cshtml.g.cs
