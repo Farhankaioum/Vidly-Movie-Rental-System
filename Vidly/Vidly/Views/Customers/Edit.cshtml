@@ -1,17 +1,20 @@
 ﻿@model CreateCustomerViewModel
 
 
-<h1> New Customer</h1>
+<h1> Edit Customer</h1>
 
 <form method="post" asp-action="Edit" asp-controller="Customers">
     <input asp-for="@Model.Customer.Id" type="hidden"/>
+    
     <div class="form-group">
         <label asp-for="@Model.Customer.Name"></label>
         <input asp-for="@Model.Customer.Name" class="form-control" />
+        <span asp-validation-for="@Model.Customer.Name" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Customer.BirthDate"></label>
         <input asp-for="@Model.Customer.BirthDate" class="form-control" />
+        <span asp-validation-for="@Model.Customer.BirthDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
@@ -20,6 +23,7 @@
                 asp-items="@(new SelectList(Model.MembershipTypes, "Id", "Name"))">
             <option value="" selected>Please select</option>
         </select>
+        <span asp-validation-for="@Model.MembershipTypes" class="text-danger"></span>
     </div>
     <div class="form-group">
         <div class="form-check">

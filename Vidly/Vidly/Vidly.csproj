@@ -11,6 +11,10 @@
     <Compile Remove="Migrations\20200724201809_AddedGenreTable.Designer.cs" />
     <Compile Remove="Migrations\20200725090837_RequiredAttributeAdded.cs" />
     <Compile Remove="Migrations\20200725090837_RequiredAttributeAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200725124401_RequiredAttributeAdded.cs" />
+    <Compile Remove="Migrations\20200725124401_RequiredAttributeAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200725181401_fake.cs" />
+    <Compile Remove="Migrations\20200725181401_fake.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

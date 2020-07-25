@@ -68,8 +68,7 @@ namespace Vidly.Controllers
         {
             var customer = _context.Customers.FirstOrDefault(c => c.Id == model.Customer.Id);
             
-            if (customer != null)
-            {
+            
                 if (ModelState.IsValid)
                 {
                     customer.Name = model.Customer.Name;
@@ -81,11 +80,8 @@ namespace Vidly.Controllers
 
                     return RedirectToAction(nameof(Index));
                 }
-               
-                return View(model);
-            }
-
-            return View();
+            
+            return View(model);
         }
 
         public IActionResult Index()

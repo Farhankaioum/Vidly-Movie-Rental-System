@@ -15,9 +15,9 @@
         <span asp-validation-for="@Model.Customer.Name" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Customer.BirthDate"></label>
-        <input asp-for="@Model.Customer.BirthDate" class="form-control" />
-        <span asp-validation-for="@Model.Customer.BirthDate" class="text-danger"></span>
+      @Html.LabelFor(m => m.Customer.BirthDate)
+        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
     </div>
 
     <div class="form-group">
@@ -26,6 +26,7 @@
                 asp-items="@(new SelectList(Model.MembershipTypes, "Id", "Name"))">
             <option value="" selected>Please select</option>
         </select>
+        <span asp-validation-for="@Model.MembershipTypes" class="text-danger"></span>
     </div>
 
     <div class="form-group">
