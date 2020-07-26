@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Vidly.Data;
+using AutoMapper;
 
 namespace Vidly
 {
@@ -31,6 +32,9 @@ namespace Vidly
             //add db connection string registration
             services.AddDbContextPool<MovieRentDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("VidlyDBConnection")));
+
+            // For automapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //for identity registration and override PasswordOptions class properties
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>

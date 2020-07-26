@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Vidly.Data;
+using Vidly.Dto;
 using Vidly.Models;
 
 namespace Vidly.Controllers.Api
@@ -15,46 +17,52 @@ namespace Vidly.Controllers.Api
     {
         private readonly MovieRentDbContext _context;
 
-        public CustomersController(MovieRentDbContext context)
+        public IMapper Mapper { get; }
+
+        public CustomersController(MovieRentDbContext context, IMapper mapper)
         {
             _context = context;
+            Mapper = mapper;
         }
 
         // Get /api/customers
         [HttpGet]
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         // Get /api/customers/1
         [HttpGet("{id}")]
-        public Customer GetCustomer(int id)
+        public CustomerDto GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 throw new Exception();
 
-            return customer;
+            return Mapper.Map<Customer, CustomerDto>(customer);
         }
 
         // Post /api/customers
         [HttpPost()]
-        public Customer CreateCustomer(Customer customer)
+        public CustomerDto CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 throw new Exception();
 
+            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            return customer;
+            customerDto.Id = customer.Id;
+
+            return customerDto;
         }
 
         // Post /api/customer/1
         [HttpPut("{id}")]
-        public void UpdateCustomer(int id, Customer customer)
+        public void UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 throw new Exception();
@@ -64,10 +72,8 @@ namespace Vidly.Controllers.Api
             if (customerInDb == null)
                 throw new Exception();
 
-            customerInDb.Name = customer.Name;
-            customerInDb.BirthDate = customer.BirthDate;
-            customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
-            customerInDb.MembershipType = customer.MembershipType;
+            // If you have existing object than pass it second argument.
+            Mapper.Map<CustomerDto, Customer>(customerDto, customerInDb);
 
             _context.SaveChanges();
         }
