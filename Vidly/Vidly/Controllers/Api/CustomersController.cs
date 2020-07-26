@@ -74,7 +74,6 @@ namespace Vidly.Controllers.Api
 
             // If you have existing object than pass it second argument.
             Mapper.Map<CustomerDto, Customer>(customerDto, customerInDb);
-
             _context.SaveChanges();
         }
 

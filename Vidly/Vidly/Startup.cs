@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Vidly.Data;
 using AutoMapper;
+using System.Text.Json;
 
 namespace Vidly
 {
@@ -27,11 +28,16 @@ namespace Vidly
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddJsonOptions(options => {
+                    // Camel Notation added for Json format value
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                });
 
             //add db connection string registration
             services.AddDbContextPool<MovieRentDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("VidlyDBConnection")));
+
 
             // For automapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
