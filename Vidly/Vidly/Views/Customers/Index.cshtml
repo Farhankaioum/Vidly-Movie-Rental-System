@@ -45,6 +45,10 @@
 @section Scripts{ 
     <script>
         $(document).ready(function () {
+            // for datatable plugine call
+            $("#customers").DataTable();
+
+
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
 
