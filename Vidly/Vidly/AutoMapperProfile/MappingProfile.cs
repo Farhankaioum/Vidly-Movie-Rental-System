@@ -28,6 +28,9 @@ namespace Vidly.AutoMapperProfile
             // MembershitType mapping
             CreateMap<MembershipType, MemberTypeDto>();
 
+            // Genre mapping
+            CreateMap<Genre, GenreDto>();
+
         }  
     }
 }

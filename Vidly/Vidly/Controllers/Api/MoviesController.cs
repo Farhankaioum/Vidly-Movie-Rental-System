@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Vidly.Data;
 using Vidly.Dto;
 using Vidly.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Vidly.Controllers.Api
 {
@@ -29,7 +30,12 @@ namespace Vidly.Controllers.Api
         public  ActionResult<IEnumerable<MovieDto>> GetMovies()
         {
 
-            return Ok(_context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>));
+            var movies = _context.Movies
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
+
+            return Ok(movies);
         }
 
         [HttpGet("{id}")]
