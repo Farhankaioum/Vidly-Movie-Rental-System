@@ -25,6 +25,9 @@ namespace Vidly.AutoMapperProfile
             CreateMap<MovieDto, Movie>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
 
+            // MembershitType mapping
+            CreateMap<MembershipType, MemberTypeDto>();
+
         }  
     }
 }

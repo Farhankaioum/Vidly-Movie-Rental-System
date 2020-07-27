@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Vidly.Data;
 using Vidly.Dto;
 using Vidly.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Vidly.Controllers.Api
 {
@@ -29,14 +30,14 @@ namespace Vidly.Controllers.Api
         [HttpGet]
         public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         // Get /api/customers/1
         [HttpGet("{id}")]
         public CustomerDto GetCustomer(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 throw new Exception();
