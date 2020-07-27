@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Vidly.Data;
 using AutoMapper;
 using System.Text.Json;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Vidly
 {
@@ -28,42 +29,27 @@ namespace Vidly
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews()
-                .AddJsonOptions(options => {
-                    // Camel Notation added for Json format value
-                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                });
-
+            
             //add db connection string registration
             services.AddDbContextPool<MovieRentDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("VidlyDBConnection")));
+
 
 
             // For automapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //for identity registration and override PasswordOptions class properties
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-
-                ////for account logout retry
-                //options.Lockout.MaxFailedAccessAttempts = 5;
-                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-
-                ////for email confirming ensuring registration
-                //options.SignIn.RequireConfirmedEmail = true;
-                ////for passwordOptions class prop
-                //options.Password.RequiredLength = 10;
-                //options.Password.RequiredUniqueChars = 3;
-                //options.Password.RequireNonAlphanumeric = false;
-                //options.Password.RequireUppercase = false;
-                //options.Password.RequireLowercase = false;
-                ////add token service
-                //options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
-
-
-            })
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<MovieRentDbContext>();
+
+
+            services.AddControllersWithViews()
+                .AddJsonOptions(options => {
+                    // Camel Notation added for Json format value
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                });
+            services.AddRazorPages();
 
 
         }
@@ -92,8 +78,14 @@ namespace Vidly
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                     name: "areas",
+                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
 
            
