@@ -8,6 +8,7 @@ using Vidly.Models;
 using Vidly.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vidly.Controllers
 {
@@ -20,6 +21,7 @@ namespace Vidly.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "CanManageMovies")]
         [HttpGet]
         public ActionResult Save()
         {
@@ -32,6 +34,7 @@ namespace Vidly.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "CanManageMovies")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Save(Movie movie)
@@ -63,6 +66,8 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "CanManageMovies")]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -82,8 +87,10 @@ namespace Vidly.Controllers
        
         public IActionResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-            return View(movies);
+            if(User.IsInRole("CanManageMovies"))
+                return View("Lists");
+
+            return View("ReadOnlyLists");
         }
 
         public IActionResult Details(int? id)
