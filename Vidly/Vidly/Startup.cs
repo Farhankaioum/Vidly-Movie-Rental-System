@@ -14,6 +14,8 @@ using Vidly.Data;
 using AutoMapper;
 using System.Text.Json;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Vidly
 {
@@ -35,21 +37,32 @@ namespace Vidly
                 options => options.UseSqlServer(Configuration.GetConnectionString("VidlyDBConnection")));
 
 
-
             // For automapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //for identity registration and override PasswordOptions class properties
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MovieRentDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+
+            })
+                .AddEntityFrameworkStores<MovieRentDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
 
 
             services.AddControllersWithViews()
                 .AddJsonOptions(options => {
                     // Camel Notation added for Json format value
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
                 });
             services.AddRazorPages();
+
+            services.AddMvc(options => {
+                // For Global authorize
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
 
 
         }
