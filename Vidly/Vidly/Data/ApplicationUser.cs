@@ -12,5 +12,6 @@ namespace Vidly.Data
         [Required]
         [MaxLength(255)]
         public string DrivingLicense { get; set; }
+
     }
 }
