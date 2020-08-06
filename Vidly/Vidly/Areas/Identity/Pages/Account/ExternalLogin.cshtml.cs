@@ -52,6 +52,10 @@ namespace Vidly.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required]
+            [Display(Name = "Driving License")]
+            public string DrivingLicense { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -122,7 +126,11 @@ namespace Vidly.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    DrivingLicense = Input.DrivingLicense 
+                };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

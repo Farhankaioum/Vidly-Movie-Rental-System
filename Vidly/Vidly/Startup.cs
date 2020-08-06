@@ -64,6 +64,14 @@ namespace Vidly
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            // For external logins
+            services.AddAuthentication().AddFacebook(options =>
+                {
+                    options.AppId = "661391721451012";
+                    options.AppSecret = "feaa7f908f0381af45e1f33599cae487";
+                });
+            
+
 
         }
 
@@ -80,6 +88,7 @@ namespace Vidly
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
