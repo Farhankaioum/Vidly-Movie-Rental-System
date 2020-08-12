@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<h1 class="mb-3">Customers</h1>
+<div>
+    <h5 class="float-left">Customer</h5>
+    <a asp-controller="Customers" asp-action="Create" class="btn btn-outline-info float-right mt-0 mb-2">Create New</a>
+</div>
+
+<table class="table table-bordered table-hover" id="customers">
+    <thead>
+        <tr>
+            <td>Customer</td>
+            <td>Membership Type</td>
+        </tr>
+
+    </thead>
+    <tbody>
+        @*@foreach (var customer in Model)
+            {
+            <tr>
+                <td><a asp-action="Edit" asp-controller="Customers" asp-route-id="@customer.Id">@customer.Name</a></td>
+                <td>@customer.MembershipType.Name</td>
+                <td>
+                    <button data-customer-id="@customer.Id" class="btn btn-link js-delete">Delete</button>
+                </td>
+            </tr>
+
+            }*@
+    </tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            // for datatable plugine call
+            var datatable = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+
+                    },
+
+                    {
+                        data: "membershipType.name"
+                    }
+
+                ]
+            });
+
+        });
+    </script>
+
+}
+
+
+

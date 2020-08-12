@@ -93,6 +93,7 @@ namespace Vidly.Controllers
             return View("ReadOnlyLists");
         }
 
+
         public IActionResult Details(int? id)
         {
             if (id == null)

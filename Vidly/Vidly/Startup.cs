@@ -60,8 +60,8 @@ namespace Vidly
 
             services.AddMvc(options => {
                 // For Global authorize
-                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                //var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                //options.Filters.Add(new AuthorizeFilter(policy));
             });
 
             // For external logins
@@ -70,8 +70,9 @@ namespace Vidly
                     options.AppId = "661391721451012";
                     options.AppSecret = "feaa7f908f0381af45e1f33599cae487";
                 });
-            
 
+            // For Glimpse registration
+            
 
         }
 
