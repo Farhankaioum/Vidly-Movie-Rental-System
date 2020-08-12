@@ -9,6 +9,7 @@ using Vidly.Data;
 using Vidly.Dto;
 using Vidly.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Vidly.Controllers.Api
 {
@@ -28,9 +29,19 @@ namespace Vidly.Controllers.Api
 
         // Get /api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IActionResult GetCustomers(string query = null)
         {
-            return _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            var customersQuery = _context.Customers
+                .Include(c => c.MembershipType).AsQueryable();
+
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDtos);
         }
 
         // Get /api/customers/1

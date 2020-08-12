@@ -262,9 +262,6 @@ G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidl
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.csprojAssemblyReference.cache
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.AssemblyInfoInputs.cache
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.AssemblyInfo.cs
-G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.csproj.CoreCompileInputs.cache
-G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.MvcApplicationPartsAssemblyInfo.cs
-G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.MvcApplicationPartsAssemblyInfo.cache
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.RazorAssemblyInfo.cache
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.RazorAssemblyInfo.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.TagHelpers.input.cache
@@ -346,3 +343,6 @@ G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidl
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\List.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\ReadOnlyLists.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Rentals\New.cshtml.g.cs
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.csproj.CoreCompileInputs.cache
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.MvcApplicationPartsAssemblyInfo.cs
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.MvcApplicationPartsAssemblyInfo.cache

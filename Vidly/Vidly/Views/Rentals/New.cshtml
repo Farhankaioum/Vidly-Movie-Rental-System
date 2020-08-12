@@ -6,15 +6,25 @@
 
 <h2>New Rental Form</h2>
 
-<form>
+<form >
     <div class="form-group">
         <label> Customer</label>
-        <input type="text" id="customers" value="" class="form-control" />
+        <div class="tt-container">
+            <input type="text" id="customer" value="" class="form-control" />
+        </div>
     </div>
 
     <div class="form-group">
         <label> Movie</label>
-        <input type="text" id="movies" value="" class="form-control" />
+        <div class="tt-container">
+            <input type="text" id="movie" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <ul id="movies" class="list-group"></ul>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -24,7 +34,9 @@
     <script>
         $(document).ready(function () {
 
-            var vm = {};
+            var vm = {
+                movieId: []
+            };
 
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -35,7 +47,7 @@
                 }
             });
 
-            $('#customers').typeahead({
+            $('#customer').typeahead({
                 minLength: 3,
                 highlight: true
             }, {
@@ -56,7 +68,7 @@
                 }
             });
 
-            $('#movies').typeahead({
+            $('#movie').typeahead({
                 minLength: 3,
                 highlight: true
             }, {
@@ -64,8 +76,17 @@
                 display: 'name',
                 source: movies
             }).on("typeahead:select", function (e, movie) {
-                vm.movieId = movie.movieId
+                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>")
+
+                $("#movie").typeahead("val", "");
+
+                vm.movieId.push(movie.movieId);
+
             });
+
+            // for submitting the form
+            
+
         });
     </script>
 }

@@ -66,3 +66,7 @@
     .tt-suggestion p {
         margin: 0;
     }
+
+    .tt-container{
+        position:relative;
+    }
