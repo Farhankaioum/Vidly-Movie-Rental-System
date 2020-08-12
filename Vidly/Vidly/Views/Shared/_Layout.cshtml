@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/lib/datatables/css/jquery.dataTables.css" rel="stylesheet" />
     <link href="~/lib/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/css/typeahead.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -28,6 +29,9 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Rentals" asp-action="New">New Rental</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index">Customer</a>
@@ -66,6 +70,7 @@
     <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/typeahead.js/typeahead.bundle.js"></script>
     <script src="~/lib/bootbox.js/bootbox.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

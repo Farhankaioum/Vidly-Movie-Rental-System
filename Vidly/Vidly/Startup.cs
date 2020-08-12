@@ -60,8 +60,8 @@ namespace Vidly
 
             services.AddMvc(options => {
                 // For Global authorize
-                //var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                //options.Filters.Add(new AuthorizeFilter(policy));
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
             });
 
             // For external logins

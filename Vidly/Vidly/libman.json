@@ -13,6 +13,10 @@
     {
       "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "library": "typeahead.js@0.11.1",
+      "destination": "wwwroot/lib/typeahead.js/"
     }
   ]
 }
