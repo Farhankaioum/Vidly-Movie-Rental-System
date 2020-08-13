@@ -340,9 +340,9 @@ G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidl
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.dll
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.pdb
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.genruntimeconfig.cache
-G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\List.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\ReadOnlyLists.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Rentals\New.cshtml.g.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.csproj.CoreCompileInputs.cache
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.MvcApplicationPartsAssemblyInfo.cs
 G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Vidly.MvcApplicationPartsAssemblyInfo.cache
+G:\Farhan(Vacation)\NewWorld\Core(Prac)\SimpleAspCoreMvcProject\Vidly\Vidly\Vidly\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Lists.cshtml.g.cs

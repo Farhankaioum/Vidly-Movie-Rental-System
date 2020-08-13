@@ -6,18 +6,18 @@
 
 <h2>New Rental Form</h2>
 
-<form >
+<form id="newRental">
     <div class="form-group">
         <label> Customer</label>
         <div class="tt-container">
-            <input type="text" id="customer" value="" class="form-control" />
+            <input type="text" id="customer" name="customer" value="" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         <label> Movie</label>
         <div class="tt-container">
-            <input type="text" id="movie" value="" class="form-control" />
+            <input type="text" id="movie" name="movie" value="" class="form-control" />
         </div>
     </div>
 
@@ -34,12 +34,13 @@
     <script>
         $(document).ready(function () {
 
+            // Using typeahead.js for autocomplete search
             var vm = {
-                movieId: []
+                movieIds: []
             };
 
             var customers = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
                     url: '/api/customers?query=%QUERY',
@@ -55,12 +56,12 @@
                 display: 'name',
                 source: customers
             }).on("typeahead:select", function (e, customer) {
-                vm.custoerId = customer.custoerId
+                vm.customerId = customer.Id
             });
 
 
             var movies = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
                     url: '/api/movies?query=%QUERY',
@@ -80,12 +81,26 @@
 
                 $("#movie").typeahead("val", "");
 
-                vm.movieId.push(movie.movieId);
+                vm.movieIds.push(movie.Id);
 
             });
 
             // for submitting the form
-            
+            $('#newRental').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/api/NewRentals",
+                    method: "post",
+                    data: vm
+                })
+                   .done(function () {
+                        console.log("done");
+                    })
+                    .fail(function () {
+                        console.log("Failed");
+                    });
+            });
 
         });
     </script>
