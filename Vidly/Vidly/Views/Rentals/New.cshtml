@@ -94,11 +94,11 @@
                     method: "post",
                     data: vm
                 })
-                   .done(function () {
-                        console.log("done");
+                    .done(function () {
+                        toastr.success("Rentals successfully recorded.");
                     })
                     .fail(function () {
-                        console.log("Failed");
+                        toastr.error("Something unexpected happened.");
                     });
             });
 
