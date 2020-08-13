@@ -10,14 +10,14 @@
     <div class="form-group">
         <label> Customer</label>
         <div class="tt-container">
-            <input type="text" id="customer" name="customer" value="" class="form-control" />
+            <input type="text" id="customer" data-rule-validCustomer="true" required name="customer" value="" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         <label> Movie</label>
         <div class="tt-container">
-            <input type="text" id="movie" name="movie" value="" class="form-control" />
+            <input type="text" id="movie" data-rule-atLeastOneMovie="true" name="movie" value="" class="form-control" />
         </div>
     </div>
 
@@ -28,80 +28,110 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
+
+    @section Scripts{
+
+        
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+        <script>
+
+
+            $(document).ready(function () {
+
+                // Using typeahead.js for autocomplete search
+                var vm = {
+                    movieIds: []
+                };
+
+                var customers = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    remote: {
+                        url: '/api/customers?query=%QUERY',
+                        wildcard: '%QUERY'
+                    }
+                });
+
+                $('#customer').typeahead({
+                    minLength: 3,
+                    highlight: true
+                }, {
+                    name: 'customers',
+                    display: 'name',
+                    source: customers
+                }).on("typeahead:select", function (e, customer) {
+                    vm.customerId = customer.Id
+                });
+
+
+                var movies = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    remote: {
+                        url: '/api/movies?query=%QUERY',
+                        wildcard: '%QUERY'
+                    }
+                });
+
+                $('#movie').typeahead({
+                    minLength: 3,
+                    highlight: true
+                }, {
+                    name: 'movies',
+                    display: 'name',
+                    source: movies
+                }).on("typeahead:select", function (e, movie) {
+                    $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>")
+
+                    $("#movie").typeahead("val", "");
+
+                    vm.movieIds.push(movie.Id);
+
+                });
+
+                // for validation the form input
+                $.validator.addMethod("validCustomer", function () {
+                    return vm.customerId && vm.customerId !== 0;
+                }, "Please select valid customer");
+
+                $.validator.addMethod("atLeastOneMovie", function () {
+                    return vm.movieIds.length > 0;
+                }, "Please select at least one movie.");
+
+
+               var validator = $("#newRental").validate({
+                    submitHandler: function () {
+
+                        // for submitting the form
+                        $.ajax({
+                            url: "/api/NewRentals",
+                            method: "post",
+                            data: vm
+                        })
+                            .done(function () {
+                                toastr.success("Rentals successfully recorded.");
+
+                                $('#customer').typeahead("val", "");
+                                $('#movie').typeahead("val", "");
+                                $('#movies').empty();
+
+                                vm = { movieIds: [] };
+
+                                validator.resetForm();
+                            })
+                            .fail(function () {
+                                toastr.error("Something unexpected happened.");
+                            });
+
+                        return false;
+                    }
+                });
+
+            });
+        </script>
+    }
+
 </form>
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
 
-            // Using typeahead.js for autocomplete search
-            var vm = {
-                movieIds: []
-            };
-
-            var customers = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/customers?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#customer').typeahead({
-                minLength: 3,
-                highlight: true
-            }, {
-                name: 'customers',
-                display: 'name',
-                source: customers
-            }).on("typeahead:select", function (e, customer) {
-                vm.customerId = customer.Id
-            });
-
-
-            var movies = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/movies?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#movie').typeahead({
-                minLength: 3,
-                highlight: true
-            }, {
-                name: 'movies',
-                display: 'name',
-                source: movies
-            }).on("typeahead:select", function (e, movie) {
-                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>")
-
-                $("#movie").typeahead("val", "");
-
-                vm.movieIds.push(movie.Id);
-
-            });
-
-            // for submitting the form
-            $('#newRental').submit(function (e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: "/api/NewRentals",
-                    method: "post",
-                    data: vm
-                })
-                    .done(function () {
-                        toastr.success("Rentals successfully recorded.");
-                    })
-                    .fail(function () {
-                        toastr.error("Something unexpected happened.");
-                    });
-            });
-
-        });
-    </script>
-}
